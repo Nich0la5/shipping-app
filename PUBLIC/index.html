@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A third-party shipping application to manage and track shipments seamlessly.">
+    <title>Ship Easy</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Spacer class */
+        .spacer { margin-bottom: 20px; }
+        /* Hidden class for hiding elements */
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <span>
+        <div class="logo">
+            <img src="path/to/logo.png" alt="Ship Easy Logo">
+        </div>
+        </span> 
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>   
+        </nav></span>
+    </header>
+    
+    <main>
+        <!-- Authentication Section -->
+        <section id="authContainer">
+            <h1>SHIP EASY</h1>
+            <p class="spacer"></p>
+            <p id="introText">Already have an account? 👇</p>
+            <section><button id="loginButton" title="Log in to your account">Login</button></section>
+            <p id="firstTimeText">Your first time? 👇</p>
+            <section><button id="signupButton" title="Create a new account">Sign Up</button></section>
+        </section>
+         <!-- login and signup form sections -->
+        <!-- Login Form -->
+         <section id="loginSignupForm">
+      <form id="loginForm" class="hidden">
+            <h2>Login</h2>
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            <section><button type="submit" title="Log in to the app">Login</button></section>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signupForm" class="hidden">
+            <h2>Sign Up</h2>
+            <label for="signupEmail">Email:</label>
+            <input type="email" id="signupEmail" placeholder="Enter your email" required>
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" placeholder="Create a password" required>
+            <section><button type="submit" title="Create a new account">Sign Up</button></section>
+        </form>
+    </section>
+        
+        <!-- Main Application -->
+        <main id="mainApp" class="hidden">
+            
+            <h1>Ship Easy</h1>
+            <hr>
+
+            <!-- Add Shipment Form -->
+             <form id="shipmentForm ">    
+                <h2>Welcome to Ship Easy – Your Trusted Shipping Partner!</h2>
+                <div class="welcome-section">
+                    <img src="path/to/welcome-image.jpg" alt="Welcome Image" style="width:100%; max-width:600px;">
+                    <p>At Ship Easy, we simplify shipping for businesses and individuals. Whether it's local or international, we ensure secure, fast, and cost-effective deliveries.</p>
+                    
+                    <h3>Fast & Secure Shipping</h3>
+                    <img src="path/to/fast-secure-shipping.jpg" alt="Fast & Secure Shipping" style="width:100%; max-width:600px;">
+                    <p>Your shipments are in safe hands. We prioritize speed and security to ensure every package arrives in perfect condition.</p>
+                    
+                    <h3>Affordable Rates</h3>
+                    <img src="path/to/affordable-rates.jpg" alt="Affordable Rates" style="width:100%; max-width:600px;">
+                    <p>We offer competitive pricing, making shipping budget-friendly for everyone. Get the best value without compromising on service quality.</p>
+                    
+                    <h3>Real-Time Tracking</h3>
+                    <img src="path/to/real-time-tracking.jpg" alt="Real-Time Tracking" style="width:100%; max-width:600px;">
+                    <p>Know exactly where your package is at any time. Our real-time tracking feature keeps you updated throughout the journey.</p>
+                    
+                    <h3>Global Reach</h3>
+                    <img src="path/to/global-reach.jpg" alt="Global Reach" style="width:100%; max-width:600px;">
+                    <p>No matter where you need to ship, we’ve got you covered. We connect you to destinations worldwide with ease.</p>
+                    
+                    <h3>Reliable Customer Support</h3>
+                    <img src="path/to/customer-support.jpg" alt="Reliable Customer Support" style="width:100%; max-width:600px;">
+                    <p>Need help? Our dedicated support team is available to assist you with any inquiries, ensuring a smooth shipping experience.</p>
+                    
+                    <h3>Start Shipping with Confidence! 🚀</h3>
+                    <p>Sign up today and experience seamless shipping like never before!</p>
+                </div>
+                <h2>Add Shipment</h2>
+                <div class="shipping-policies">
+                    <h3>Basic Shipping Policies for Your Shipping App</h3>
+                    <ul>
+                        <li>No Perishable Goods – Perishable items are not allowed.</li>
+                        <li>Prohibited & Restricted Items – Certain goods cannot be shipped.</li>
+                        <li>Package Size & Weight Limits – Shipments must meet specified limits.</li>
+                        <li>Accurate Address Requirement – A correct and complete address is required.</li>
+                        <li>Proper Packaging – Items must be securely packed.</li>
+                        <li>Customs & Duties – Compliance with customs regulations is mandatory.</li>
+                        <li>No Cash or Valuables – High-value items should not be shipped without insurance.</li>
+                        <li>Delivery Time Estimates – Shipping times are approximate.</li>
+                        <li>Tracking & Notifications – Users will receive shipment updates.</li>
+                        <li>Return & Refund Policy – Lost or damaged items may be eligible for claims.</li>
+                    </ul>
+                </div>
+              <div class=" flexible" >    
+                <section class=" container">
+                    <h3>Sender Information</h3>
+                    <div class="insider">
+                        <div>    
+                            <label for="senderName">Sender Name:</label>
+                            <input type="text" id="senderName" placeholder="Enter sender's name" maxlength="50" required>
+                        </div>
+                        <div>
+                            <label for="senderEmail">Sender Email:</label>
+                            <input type="email" id="senderEmail" placeholder="Enter sender's email" required>
+                        </div>
+                        <div>
+                            <label for="senderPhoneNumber">Sender Phone Number:</label>
+                            <input type="text" id="senderPhoneNumber" placeholder="+254 123456789" pattern="\+254\s[0-9]{9}" required>
+                        </div>
+                        <div>
+                            <label for="senderAddress">Sender Address:</label>
+                            <input type="text" id="senderAddress" placeholder="Enter sender's address" required>
+                        </div>
+                    </div>
+                    <div class=" container">
+                        <h3>Receiver Information</h3>
+                        <div class="insider">
+                            <div>
+                                <label for="receiverName">Receiver Name:</label>
+                                <input type="text" id="receiverName" placeholder="Enter receiver's name" maxlength="50" required>
+                            </div>
+                            
+                            <div>
+                                <label for="receiverEmail">Receiver Email:</label>
+                                <input type="email" id="receiverEmail" placeholder="Enter receiver's email" required>
+                            </div>
+                            
+                            <div>
+                                <label for="receiverPhoneNumber">Receiver Phone Number:</label>
+                                <input type="text" id="receiverPhoneNumber" placeholder="+254 123456789" pattern="\+254\s[0-9]{9}" required>
+                            </div>
+                            
+                            <div>
+                                <label for="receiverAddress">Receiver Address:</label>
+                                <input type="text" id="receiverAddress" placeholder="Enter receiver's address" required>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                
+                <div class=" container">
+                    <h3>Location Information</h3>
+                    <div class="insider">
+                    <div>
+                    <label for="pickupLocation">Pickup Location:</label>
+                    <input type="text" id="pickupLocation" placeholder="Enter pickup location" required>
+                    </div>
+                    <div>
+                    <label for="dropoffLocation">Dropoff Location:</label>
+                    <input type="text" id="dropoffLocation" placeholder="Enter dropoff location" required>
+                    </div>
+                    <label>Shipping Range:</label>
+                    <div class="shipping-range">
+                        <input type="radio" id="local" name="shippingRange" value="local" required>
+                        <label for="local">Local</label><br>
+                        
+                        <input type="radio" id="regional" name="shippingRange" value="regional" required>
+                        <label for="regional">Regional</label><br>
+                        
+                        <input type="radio" id="national" name="shippingRange" value="national" required>
+                        <label for="national">National</label><br>
+                        
+                        <input type="radio" id="international" name="shippingRange" value="international" required>
+                        <label for="international">International</label>
+                    </div>
+                    </div>
+                </div>
+                                
+                <div class=" container">
+                <h3>Shipping Methods Information</h3>
+                <label>Shipping Method:</label>     
+                <div class="method-wrap">
+                <input type="radio" id="airFreight" name="shippingMethod" value="airFreight" required>
+                <label for="airFreight">Air Freight</label><br>
+                </div>      
+                <div>
+                <input type="radio" id="seaFreight" name="shippingMethod" value="seaFreight" required>
+                <label for="seaFreight">Sea Freight</label><br>
+                </div>   
+                <div>
+                <input type="radio" id="landFreight" name="shippingMethod" value="landFreight" required>
+                <label for="landFreight">Land Freight</label><br>
+                </div>
+                <div>  
+                <input type="radio" id="railFreight" name="shippingMethod" value="railFreight" required>
+                <label for="railFreight">Rail Freight</label>
+                </div>
+             </div>
+
+                
+                <div class=" container">
+                        <h3>Package Information</h3>
+                        <label>Type of Package:</label>
+                        <div class="package-wrap">
+                            <input type="radio" id="documents" name="packageType" value="documents" required>
+                            <label for="documents">Documents & Small Parcels</label><br>
+                        </div>
+                        <div >
+                            <input type="radio" id="ecommerce" name="packageType" value="ecommerce" required>
+                            <label for="ecommerce">E-commerce Products</label><br>
+                        </div>
+                        <div >
+                            <input type="radio" id="perishables" name="packageType" value="perishables" required>
+                            <label for="perishables">Perishables</label><br>
+                        </div>
+                        <div >
+                            <input type="radio" id="fragile" name="packageType" value="fragile" required>
+                            <label for="fragile">Fragile & High-Value Items</label><br>
+                        </div>
+                        <div >
+                            <input type="radio" id="industrial" name="packageType" value="industrial" required>
+                            <label for="industrial">Industrial & Business Equipment</label><br>
+                        </div>
+                        <div >
+                            <input type="radio" id="heavy" name="packageType" value="heavy" required>
+                            <label for="heavy">Heavy & Oversized Items</label><br>
+                        </div>
+                        <div >
+                            <input type="radio" id="personal" name="packageType" value="personal" required>
+                            <label for="personal">Personal Belongings</label><br>
+                        </div>
+                        <div >
+                            <input type="radio" id="special" name="packageType" value="special" required>
+                            <label for="special">Special & Restricted Goods</label>
+                        </div>
+                    </div>
+             
+                    <div class="container">
+                    <h3> package-dimensions</h3>
+                    <div class="insider">
+                        <label for="packageLength">Length (cm):</label>
+                        <div>
+                        <input type="number" id="packageLength" step="0.01" min="0" placeholder="Enter package length" required>
+                        </div>
+                        <label for="packageWidth">Width (cm):</label>
+                        <div>
+                        <input type="number" id="packageWidth" step="0.01" min="0" placeholder="Enter package width" required>
+                        </div>
+                        <label for="packageHeight">Height (cm):</label>
+                        <div>
+                        <input type="number" id="packageHeight" step="0.01" min="0" placeholder="Enter package height" required>
+                        </div>
+                    </div>
+                   </div>
+
+                    <div class="container">
+                        <h3>package Description</h3>
+                        <div >
+                        <label for="packageDescription">Describe your package:</label>
+                        </div>
+                        <div>
+                        <textarea id="packageDescription" placeholder="Enter package description" maxlength="200" required></textarea>
+                        </div>
+                        <label for="weight">Weight (kg):</label>
+                        <div>
+                        <input type="number" id="weight" step="0.01" min="0" placeholder="Enter package weight" required>
+                        </div>
+                        <label for="pickupDate">Pickup Date:</label>
+                        <div>
+                        <input type="date" id="pickupDate" required>
+                        </div>
+                        <label for="dropoffDate">Drop off date:</label>
+                        <div>
+                        <input type="date" id="dropoffDate" required>
+                        </div>
+                    </div>
+              </section>    
+                </div>
+             </form>
+
+                <!-- Cost Calculation -->
+                <div id="calculateCostButton">
+                <button id="calculateCostButton" type="button">Calculate Cost</button>
+                <p>Total Cost: <span id="totalCost">0</span></p>
+               </div>
+
+                    <!-- Agree to terms and conditions-->
+                <div>
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">Agree to terms and conditions</label>
+                    <details>
+                        <summary>Read more</summary>
+                        <p>Terms and conditions content goes here...</p>
+                    </details>
+                </div>
+
+                <!-- Add shipment button -->
+                <button id="addShipmentButton" type="button" title="Add a new shipment" disabled>Add Shipment</button>
+
+                <!-- Display Shipments -->
+                <div id="shipmentList">
+                    <h3>Shipment List</h3>
+                    <ul id="shipments"></ul>
+                </div>
+
+                <!-- Logout Button -->
+                <button id="logoutButton" title="Log out of your account">Logout</button>
+        
+         </div>
+        </main> 
+    <script src="script.js"></script>
+</body>
+
+<footer>
+    <section class="feedback">
+        <p>GIVE US FEEDBACK:</p>
+    </section>
+    <section class="footer-content">
+        <div>
+            <h3>Services</h3>
+            <ul>
+                <li><a href="#">Shipping</a></li>
+                <li><a href="#">Tracking</a></li>
+                <li><a href="#">Customs</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Information</h3>
+            <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Return Policy</h3>
+            <p>Learn about our return and refund policies.</p>
+        </div>
+        <div>
+            <h3>Socials</h3>
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </div>
+    </section>
+</footer>
+
+</html>

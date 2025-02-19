@@ -1,0 +1,23 @@
+{
+  "name": "shipping-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "shipping",
+    "parcels"
+  ],
+  "author": "NICHOLAS KIBICHII",
+  "license": "ISC",
+  "description": "Application that facilitates communication and operation between two parties which want to transact goods or essentials",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "sqlite3": "^5.1.7"
+  }
+}
