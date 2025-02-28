@@ -1,3 +1,4 @@
+
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
@@ -5,11 +6,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
-
 const app = express();
 const PORT = 3000;
 const SECRET_KEY = 'YourStrongSecretKey'; // Replace with a strong secret key
-
 // Open SQLite database
 const db = new sqlite3.Database('database.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
   if (err) {
@@ -25,8 +24,7 @@ const db = new sqlite3.Database('database.db', sqlite3.OPEN_READWRITE | sqlite3.
           password TEXT NOT NULL
         )`
       );
-
-      // Create shipments table (updated schema)
+      // Create shipments table
       db.run(
         `CREATE TABLE IF NOT EXISTS shipments (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,25 +32,13 @@ const db = new sqlite3.Database('database.db', sqlite3.OPEN_READWRITE | sqlite3.
           sender_email TEXT NOT NULL,
           sender_phone_number TEXT NOT NULL,
           sender_address TEXT NOT NULL,
-
           receiver_name TEXT NOT NULL,
           receiver_email TEXT NOT NULL,
           receiver_phone_number TEXT NOT NULL,
           receiver_address TEXT NOT NULL,
-
-          pickup_location TEXT NOT NULL,
-          dropoff_location TEXT NOT NULL,
-
-          shipping_range TEXT NOT NULL,
-          shipping_method TEXT NOT NULL,
-
-          package_type TEXT NOT NULL,
-          weight REAL NOT NULL,
           total_cost REAL NOT NULL,
-
+          weight REAL NOT NULL,
           pickup_date TEXT NOT NULL,
-          dropoff_date TEXT NOT NULL,
-          
           user_id INTEGER NOT NULL,
           FOREIGN KEY(user_id) REFERENCES users(id)
         );`
@@ -60,17 +46,24 @@ const db = new sqlite3.Database('database.db', sqlite3.OPEN_READWRITE | sqlite3.
     });
   }
 });
-
 // Enable CORS
 app.use(cors());
-
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
+// Admin middleware
+function isAdmin(req, res, next) {
+  if (req.user && req.user.is_admin) {
+    next();
+  } else {
+    res.status(403).json({ error: 'Admin access required' });
+  }
+}
+
 // JWT Token Verification Middleware
 function verifyToken(req, res, next) {
-  const token = req.headers['authorization']?.split(' ')[1];
+  const token = req.headers['authorization']?.split(' ')[1]; // Get token from Authorization header
   if (!token) {
     return res.status(403).json({ error: 'No token provided' });
   }
@@ -82,14 +75,13 @@ function verifyToken(req, res, next) {
     next();
   });
 }
-
 // User Sign Up
 app.post('/api/signup', async (req, res) => {
   const { email, password } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const stmt = db.prepare('INSERT INTO users (email, password) VALUES (?, ?)');
-    stmt.run(email, hashedPassword, function (err) {
+    const stmt = db.prepare('INSERT INTO users (email, password, is_admin) VALUES (?, ?, ?)');
+    stmt.run(email, hashedPassword, is_admin, function (err) {
       if (err) {
         if (err.code === 'SQLITE_CONSTRAINT') {
           return res.status(400).json({ error: 'Email already exists' });
@@ -103,6 +95,12 @@ app.post('/api/signup', async (req, res) => {
     res.status(500).json({ error: 'Error creating user' });
   }
 });
+
+// In your signup route, add:
+let is_admin = 0;
+if (email === 'nicholaskibichii53@gmail.com') { // Set your admin email here
+    is_admin = 1;
+}
 
 // User Login
 app.post('/api/login', (req, res) => {
@@ -119,13 +117,14 @@ app.post('/api/login', (req, res) => {
       if (err || !result) {
         return res.status(401).json({ error: 'Invalid credentials' });
       }
-      const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, { expiresIn: '1h' });
+      const token = jwt.sign({ id: user.id, email: user.email, is_admin: user.is_admin }, SECRET_KEY, { expiresIn: '1h' });
       res.status(200).json({ token });
     });
   });
 });
 
-// Add a shipment (updated for new fields)
+
+// Add a shipment
 app.post('/api/shipments', verifyToken, (req, res) => {
   const {
     senderName,
@@ -141,12 +140,15 @@ app.post('/api/shipments', verifyToken, (req, res) => {
     shippingRange,
     shippingMethod,
     packageType,
+    packageLength,
+    packageWidth,
+    packageHeight,
+    packageDescription,
     weight,
-    totalCost,
     pickupDate,
     dropoffDate,
+    totalCost,
   } = req.body;
-
   if (
     !senderName ||
     !senderEmail ||
@@ -156,28 +158,26 @@ app.post('/api/shipments', verifyToken, (req, res) => {
     !receiverEmail ||
     !receiverPhoneNumber ||
     !receiverAddress ||
-    !pickupLocation ||
-    !dropoffLocation ||
-    !shippingRange ||
-    !shippingMethod ||
-    !packageType ||
+    !pickupLocation||
+    !dropoffLocation||
+    !shippingRange||
+    !shippingMethod||
+    !packageType||
+    !packageLength||
+    !packageWidth||
+    !packageHeight||
+    !packageDescription||
     !weight ||
-    !totalCost ||
-    !pickupDate ||
-    !dropoffDate
+    !totalCost||
+    !pickupDate||
+    !dropoffDate||
+    !totalCost
   ) {
     return res.status(400).json({ error: 'Invalid or missing fields' });
   }
-
   const stmt = db.prepare(
-    `INSERT INTO shipments (
-      sender_name, sender_email, sender_phone_number, sender_address,
-      receiver_name, receiver_email, receiver_phone_number, receiver_address,
-      pickup_location, dropoff_location, shipping_range, shipping_method,
-      package_type, weight, total_cost, pickup_date, dropoff_date, user_id
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    'INSERT INTO shipments (sender_name, sender_email, sender_phone_number, sender_address, receiver_name, receiver_email, receiver_phone_number, receiver_address, pickup_location, drop_off_location, shipping_range, shipping_method, package_type, package_length, package_width, package_height, package_description, weight, pickup_date, dropoff_date, total_cost, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
   );
-
   stmt.run(
     senderName,
     senderEmail,
@@ -192,22 +192,26 @@ app.post('/api/shipments', verifyToken, (req, res) => {
     shippingRange,
     shippingMethod,
     packageType,
+    packageLength,
+    packageWidth,
+    packageHeight,
+    packageDescription,
     weight,
-    totalCost,
     pickupDate,
     dropoffDate,
+    totalCost,
     req.user.id,
     function (err) {
       if (err) {
         console.error('Error adding shipment:', err.message);
         return res.status(500).json({ error: 'Error adding shipment' });
       }
-      res.status(201).json({ message: 'Shipment added successfully' });
+      res.status(201).json({ message: 'Shipment added to db successfully' });
     }
   );
-
   stmt.finalize();
 });
+
 
 // Fetch shipments for the logged-in user
 app.get('/api/shipments', verifyToken, (req, res) => {
@@ -220,11 +224,42 @@ app.get('/api/shipments', verifyToken, (req, res) => {
   });
 });
 
+
+// Admin middleware
+function isAdmin(req, res, next) {
+  if (req.user && req.user.is_admin) {
+    next();
+  } else {
+    res.status(403).json({ error: 'Admin access required' });
+  }
+}
+
+// Admin Routes
+// Get all users (admin only)
+app.get('/api/admin/users', verifyToken, isAdmin, (req, res) => {
+  db.all('SELECT id, email, is_admin FROM users', (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+// Get all shipments (admin only)
+app.get('/api/admin/shipments', verifyToken, isAdmin, (req, res) => {
+  db.all('SELECT * FROM shipments', (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+// Create admin route handler
+app.get('/admin', verifyToken, isAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
 // Serve the index.html file for all unmatched routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);

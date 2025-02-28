@@ -1,22 +1,18 @@
+*{
+  margin-top:0;
+  margin-left:0;
+  margin-right:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* General Styles */
 html, body {
-  margin-top: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   background-color: #ffffff;
-  width: 100%;
   font-family: Arial, sans-serif;
-  padding:0px;
-  text-align: relative;
-  margin-bottom: 0px;
+  /* text-align: relative; */
 }
 main {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  padding: 10px;
   background-color: #ffffff;
   border-radius: 25px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -27,9 +23,6 @@ main {
 .hidden {
   display: none;
 }
-.spacer {
-   margin-bottom: 20px;
-   }
 /* Header Styles */
 h1, h2 {
   margin: 10px 0;
@@ -47,31 +40,194 @@ form input {
 }
 /* loginform*/
 .flexible {
-
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 2px;
 }
 
-.container{
+  h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  
+  .welcome-section{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 60px;
+    margin: 5px;
+  }
+  .welcome-a{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: right;
+      background-color: #ffffff;
+      margin: 20px;
+      margin-bottom: 200px;
+      width: 342px;
+      height: 170px;
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 5px;
+      
+      margin-left: auto; /* Pushes the box to the right */
+  }
+  .welcome-b {
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center text horizontally */
+    justify-content: flex-end; /* Push content to the bottom */
+
+    background-color: #ffffff;
+    gap: 4px;
+    margin: 5px;
+    width: 342px;
+    height: 294px;
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 20px;
+}
+
+
+
+ .container{
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  gap: 0px;
-  width: 45%;
-  border: 1px solid #d5da98; 
+ }
+ .container1 {
+  
   border-style: groove;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
+  margin: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 2px;
+
+  /* height: 400px; Set an explicit height (adjust as needed) */
+  color: #000000;
+  
+  background-image: url("assets/main.jpeg");
+  background-size: cover; /* Ensures the full image is visible */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+ 
+
+ .container2{
+  /* display: flex; */
+  /* flex-direction:row; */
+  justify-content:space-evenly;
+  border-style: groove;
+  margin: 20px;
+  border:0px solid black;
+  border-radius: 50px;
+  padding: 15px;
+  background-color: #EBE6E6;
+ }
+ .container3{
+  display: flex;
+  justify-content:center;
+  border-style: groove;
+  height: 95%;
+  gap: 70px;
+  margin:30px;
+  border:0px solid black;
+  border-radius: 20px;
+  padding: 25px;
+  background-color: #EBE6E6;
+ }
+ .container4{
+  display: flex;
+  justify-content:center;
+  border-style: groove;
+  margin: 20px;
+  gap: 70px;
+  border:0px solid black;
+  border-radius: 20px;
+  padding: 15px;
+  background-color: #EBE6E6;
+ }
+ .container5{
+  display: flex;
+  justify-content:center;
+  border-style: groove;
+  gap: 70px;
+  margin: 20px;
+  border:px solid black;
+  border-radius: 20px;
+  padding: 15px;
+  background-color: #EBE6E6;
+ }
+
+ .shipping-policies {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping into multiple rows */
+  justify-content: center; /* Centers the items */
+  gap: 60px; /* Spacing between items */
+  max-width: 100%; /* Ensures full width usage */
+}
+.policy {
+  display: flex; /* Enables flexbox */
+  flex-direction: column; /* Stacks content vertically */
+  justify-content: flex-end; /* Pushes text to the bottom */
+  align-items: center; /* Centers text horizontally */
+  
+  border-style: groove;
+  width: 342px;
+  height: 294px;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 15px 10px;
+  background-color: #ffffff;
+  text-align: center; /* Ensures text stays centered */
 }
 
-h3 {
-  margin-top: 0;
-  margin-bottom: 15px;
+
+
+.personal-info{
+  background-color: #ffffff;
+  padding: 60px;
+  border-radius: 25px;
 }
 
+.location-info{
+  background-color: #ffffff;
+  padding: 60px;
+  border-radius: 25px;
+}
+
+.shipment-info{
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 25px;
+
+}
+
+.shipping-method-info{
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 25px;
+  height: 250px;
+}
+
+.package-info{
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 25px;
+}
+
+.package-dimensions{
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 25px;
+}
+
+.package-description{
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 25px;
+}
 
 
 /* Add this CSS to your existing stylesheet */
@@ -91,23 +247,24 @@ textarea {
 }
 /* Button Styles */
 button {
-  width: 20%;
+  width: 10%;
   padding: 10px;
-  background-color: #3d158892;
-  color: white;
+  background-color:rgba(240, 158, 71, 0.69);
+  color: rgb(0, 0, 0);
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  margin:20px auto;
 }
 button:hover {
   background-color: #0056b3;
 }
 /* Authentication Section */
 #authContainer {
-  margin: 20px 0;
+  margin: 90px auto;
   text-align: center;
   width: 70%;
+  justify-self: center;
+  
 }
 #authContainer button {
   margin: 10px auto;
@@ -116,9 +273,10 @@ button:hover {
 }
 /* loginSignupForm*/
 #loginSignupForm {
-  margin: 20px 0;
+  margin: 90px auto;
   text-align: center;
   width: 70%;
+  justify-self: center;
 }
 
 /* Shipment List */
@@ -136,51 +294,81 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 /* Logout Button */
-#logoutButton {
-  margin: 20px auto;
-}
+  /* margin: 20px auto; */
 
-/* header footer */
+
+/* header footer Header Styles */
 /* Header Styles */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(193, 156, 69, 0.814);
-  padding: 15px 20px;
-  color: white;
-  width: 98%;
+  background-color: rgba(193, 193, 113, 0.41);
+  padding: 5px 10px;
 }
 
-header .logo img {
+/* Header Wrap (Main Layout) */
+.headerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spaces out elements */
+  padding: 10px;
+}
+
+/* Logo Styling */
+.logo img {
   width: 120px;
   height: auto;
 }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+/* Centering the Brand Name */
+.brand-name {
+  max-width: 300px;
+  flex-grow: 1; /* Makes it take available space */
+  text-align: center;
 }
 
-nav ul li {
+/* Logout Button (Moved to the Right) */
+.logout-btn {
+  background-color: #ff6600; /* Adjust button color */
+}
+
+.logout-btn:hover {
+  background-color: #cc5500;
+}
+
+/* Navigation Menu */
+nav {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content:flex-end;
+  gap: 40px;
+}
+
+.nav-links li {
   display: inline;
 }
 
-nav ul li a {
+.nav-links a {
   text-decoration: none;
-  color: white;
-  font-weight: bold;
+  color: rgb(0, 0, 0);
+  font-weight: lighter;
 }
+
+.nav-links a:hover {
+  color: #ff6600;
+}
+
 
 /* Footer Styles */
 footer {
-  background-color: rgba(193, 156, 69, 0.814);
-  color: white;
+  background-color:rgba(193, 193, 113, 0.41);
+  color: rgb(0, 0, 0);
   text-align: center;
   padding: 20px 10px;
   margin-top: 30px;
-  width: 98%;
   margin-bottom: 0px;
 }
 
@@ -209,10 +397,6 @@ footer {
 }
 
 .footer-content ul li a {
-  color: white;
+  color: rgb(0, 0, 0);
   text-decoration: none;
 }
-
-/*.footer-content ul li a:hover {
-  text-decoration: underline;*/
-
